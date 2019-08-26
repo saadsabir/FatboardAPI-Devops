@@ -1,0 +1,88 @@
+<div class="p-3 mx-auto text-center">
+    <h1 class="display-4">Ajouter un Account</h1>
+</div>
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-sm p-4">
+
+                    {{#if errors }}
+                        <div class="alert alert-danger">
+                            {{# each errors }}
+                                {{ this.msg }} <br>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+
+                    <form method="post">
+                        <div class="form-group">
+                            <label>Prénom</label>
+                            <input {{#with (ifIn errors "prenom")}}
+                                class="form-control is-invalid" {{else}}
+                                class="form-control"
+                            {{/with}} type="text" name="prenom" placeholder="Prénom.">
+                            <small class="form-text text-muted">
+                                Saisissez le prénom du account
+                            </small>
+                            {{#with (ifIn errors "prenom")}}
+                                <div class="invalid-feedback">
+                                    {{ msg }}
+                                </div>
+                            {{/with}}
+                        </div>
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input {{#with (ifIn errors "nom")}}
+                            class="form-control is-invalid" {{else}}
+                            class="form-control"
+                            {{/with}} type="text" name="nom" placeholder="Nom.">
+                            <small class="form-text text-muted">
+                                Saisissez le nom du account
+                            </small>
+                            {{#with (ifIn errors "nom")}}
+                                <div class="invalid-feedback">
+                                    {{ msg }}
+                                </div>
+                            {{/with}}
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input {{#with (ifIn errors "email")}}
+                            class="form-control is-invalid" {{else}}
+                            class="form-control"
+                            {{/with}} type="email" name="email" placeholder="Email.">
+                            <small class="form-text text-muted">
+                                Saisissez l'email du account
+                            </small>
+                            {{#with (ifIn errors "email")}}
+                                <div class="invalid-feedback">
+                                    {{ msg }}
+                                </div>
+                            {{/with}}
+                        </div>
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input {{#with (ifIn errors "tel")}}
+                            class="form-control is-invalid" {{else}}
+                            class="form-control"
+                            {{/with}} type="tel" name="tel" placeholder="Téléphone.">
+                            <small class="form-text text-muted">
+                                Saisissez le téléphone du account
+                            </small>
+                            {{#with (ifIn errors "tel")}}
+                                <div class="invalid-feedback">
+                                    {{ msg }}
+                                </div>
+                            {{/with}}
+                        </div>
+                        <button class="btn btn-block btn-dark">
+                            Ajouter le Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
