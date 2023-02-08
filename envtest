@@ -1,0 +1,39 @@
+# NODE TODO
+NODE_ENV=production
+PORT=3001
+HOST=localhost
+# MONGO TODO
+MONGO_USERNAME=adminFatboar
+MONGO_DB=fatboar
+MONGO_PASSWORD=azerty12
+MONGO_HOSTNAME=localhost
+MONGO_PORT=27017
+
+#GOOGLE_AUTH TODO
+GOOGLE_CLIENTID=799953681121-n0jkljdg1pp3t3cauapqvhsr4uga2p4q.apps.googleusercontent.com
+GOOGLE_CLIENTSECRET=j_N9Ibmq08mqJKZ38HaMY-X1
+GOOGLE_REDIRECT=https://api.fatboarrestaurant.com/auth/google/callback
+
+#FACEBOOK_AUTH TODO
+FACEBOOK_CLIENTID=2668484373235739
+FACEBOOK_CLIENTSECRET=7a761e1ee17dfa1de1707c0b99bd7ab0
+FACEBOOK_CALLBACKURL=https://api.fatboarrestaurant.com/auth/facebook/callback
+FACEBOOK_TEST_EMAIL=saadsabdev@gmail.com
+
+#LOCAL_URL TODO
+CLIENT=fatboarrestaurant.com
+CLIENTURL=https://fatboarrestaurant.com
+SCHEMES=https://
+SERVERAPI=https://api.fatboarrestaurant.com
+
+#GMAIL
+GMAILPSW=Qm6nlpmBf9ar2zoZ
+SUPPORTEMAIL=restaurantfatboar@gmail.com
+
+SECRETKEY=c2VjcmV0S2V5Zm9yZmF0Ym9hcjIwMTk=
+
+#JWT
+JWTSECRET=ZmF0Ym9hcmRhdXRoZW50aWNhdGlvbg==
+
+#COOKIE
+COOKIEKEY=dGhpc2lzdGhlZmF0Ym9hcmRLMjAxOWV5MTIwOTIwMTk=
