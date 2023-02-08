@@ -1,0 +1,1694 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "FATBOAR API",
+    "termsOfService": "http://swagger.io/terms/"
+  },
+  "host": "api.fatboarrestaurant.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Account",
+      "description": "Operations about accounts"
+    },
+    {
+      "name": "Ticket",
+      "description": "Operations about tickets"
+    },
+    {
+      "name": "Gain",
+      "description": "Operations about gain"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/accounts/addaccount": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "create new account",
+        "description": "This can only be done by the logged in account.",
+        "operationId": "createAccount",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created account object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "password",
+                "acceptCGU"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "acceptCGU":{
+                  "type":"boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/connection": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "login account",
+        "description": "This can only be done by the logged in account.",
+        "operationId": "connectionAccount",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Connection account object",
+            "required": true,
+            "schema": {
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/getallaccounts": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "get all accounts",
+        "description": "admin and serveur access only to get all accounts",
+        "operationId": "getAllAccounts",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/getaccountsbyfilter": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "get accounts by filter (email or role or enable(true/false))",
+        "description": "admin and serveur access only to get accounts by filter (email or role or enable account(true/false))",
+        "operationId": "getaccountsbyfilter",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "filter fields",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "enable": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/getmyaccount": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "get my account",
+        "description": "get account by token",
+        "operationId": "getmyAccount",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/disableaccountbytoken": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "disable my account",
+        "description": "disable account by token",
+        "operationId": "disablemyAccount",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/disableaccountbyid": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "disable account by id (admin only)",
+        "description": "disable account by id (admin only)",
+        "operationId": "disableAccountById",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "id account to disable",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/enableaccountbyid": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "enable account by id (admin only)",
+        "description": "enable account by id (admin only)",
+        "operationId": "enableaccountbyid",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "id account to enable",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/updateaccount": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "update my account",
+        "description": "update information of my account",
+        "operationId": "updateAccount",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "password"
+              ],
+              "properties": {
+                "datenaissance": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "default value null"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "nom": {
+                  "type": "string"
+                },
+                "prenom": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "tel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/updateaccountv2": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "update my account with checking password",
+        "description": "update information of my account",
+        "operationId": "updateAccountv2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "password"
+              ],
+              "properties": {
+                "datenaissance": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "default value null"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "nom": {
+                  "type": "string"
+                },
+                "prenom": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "tel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/updateaccountbyid": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "update account by id (admin only)",
+        "description": "update information account by id",
+        "operationId": "updateAccountById",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "password"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "datenaissance": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "default value null"
+                },
+                "nom": {
+                  "type": "string"
+                },
+                "prenom": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "tel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/updateaccountbyidv2": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "update account by id (admin only)",
+        "description": "update information account by id (email,name, birthay.. not password)",
+        "operationId": "updateAccountByIdv2",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "datenaissance": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "default value null"
+                },
+                "nom": {
+                  "type": "string"
+                },
+                "prenom": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "tel": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/getrolebytoken": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "get account role by token",
+        "description": "get account role by token",
+        "operationId": "getrolebytoken",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/sendforgotpasswordlink": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "forgot my password",
+        "description": "send email to reset password",
+        "operationId": "sendforgotpasswordlink",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/resetpassword": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "reset my password",
+        "description": "reset password using token sended in the email",
+        "operationId": "resetpassword",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "required": [
+                "token",
+                "password",
+                "confirmpassword"
+              ],
+              "properties": {
+                "token": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "confirmpassword": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/getstataccounts": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "get statistics of enable and disable accounts",
+        "description": "admin only can access to get statistics",
+        "operationId": "getstataccounts",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/setacceptCGU": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "set accept CGU to true when user accept CGU",
+        "description": "set accept CGU to true when user accept CGU",
+        "operationId": "setacceptCGU",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/accounts/setacceptCookies": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Account"
+        ],
+        "summary": "set accept Cookies to true when user accept Cookies",
+        "description": "set accept Cookies to true when user accept Cookies",
+        "operationId": "setacceptCookies",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/getallgains": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "get list of all gains",
+        "description": "admin or serveur access only to get all gains",
+        "operationId": "getallgains",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/getgainsbyfilter": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "get gains by filter (email, numTicket or libelleGain)",
+        "description": "admin or serveur access only to get gains by filter (email, numTicket or libelleGain)",
+        "operationId": "getgainsbyfilter",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "numTicket": {
+                  "type": "integer",
+                  "minLength": 10,
+                  "maxLength": 10
+                },
+                "libelleGain": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/getmygain": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "get my list of gains",
+        "description": "get list of gains for one user by token",
+        "operationId": "getmygain",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/takegain": {
+      "post": {
+        "tags": [
+          "Gain"
+        ],
+        "summary": "pass the gain status to taked",
+        "description": "pass status taked to true when the user got his gain",
+        "operationId": "takegain",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "required": [
+                "numTicket"
+              ],
+              "properties": {
+                "numTicket": {
+                  "type": "integer",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/setbigwinner": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "set the car winner",
+        "description": "admin access only to set the car winner",
+        "operationId": "setbigwinner",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/getwinner": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "get the car winner",
+        "description": "admin and serveur access only to get the car winner",
+        "operationId": "getwinner",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gains/getstatgains": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Gain"
+        ],
+        "summary": "get gains statistics by libellegain",
+        "description": "admin only can access to get statistics",
+        "operationId": "getstatgains",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/getalltickets": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "get list of all tickets",
+        "description": "admin or serveur access only to get all tickets",
+        "operationId": "getalltickets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/getticketssbyfilter": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "get tickets by filter (email, numTicket, used(true/false)) or libelleGain",
+        "description": "admin or serveur access only to get tickets by filter (email, numTicket, used(true/false) or libelleGain",
+        "operationId": "getticketssbyfilter",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "numTicket": {
+                  "type": "integer",
+                  "minLength": 10,
+                  "maxLength": 10
+                },
+                "used": {
+                  "type": "boolean"
+                },
+                "libelleGain": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/getmytickets": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "get my list of tickets",
+        "description": "get list of tickets for one user by token",
+        "operationId": "getmytickets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/validateticket": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "validate one ticket",
+        "description": "enter a numTicket to validate a ticket",
+        "operationId": "validateticket",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "required": [
+                "numTicket"
+              ],
+              "properties": {
+                "numTicket": {
+                  "type": "integer",
+                  "minLength": 10,
+                  "maxLength": 10
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/generateautotickets": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "generate 1 500 000 tickets",
+        "description": "admin access only to create 1 500 000 tickets after clean tickets collection",
+        "operationId": "generateautotickets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tickets/getstattickets": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "get statistics of used and not used tickets",
+        "description": "admin only can access to get statistics",
+        "operationId": "getstattickets",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "BAD REQUEST"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NOT FOUND"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Account": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "auto-increment"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "prenom": {
+          "type": "string",
+          "default": ""
+        },
+        "nom": {
+          "type": "string",
+          "default": ""
+        },
+        "tel": {
+          "type": "string",
+          "default": ""
+        },
+        "dateCreation": {
+          "type": "string",
+          "format": "date-time",
+          "description": "default value dateNow"
+        },
+        "datenaissance": {
+          "type": "string",
+          "format": "date-time",
+          "description": "default value null"
+        },
+        "resetpasswordtoken": {
+          "type": "string",
+          "default": ""
+        },
+        "resetpasswordexpires": {
+          "type": "string",
+          "default": ""
+        },
+        "facebook": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "token": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "google": {
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "role": {
+          "type": "string",
+          "default": "user"
+        },
+        "enable": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": [
+        "_id",
+        "email",
+        "password"
+      ],
+      "xml": {
+        "name": "Account"
+      }
+    },
+    "Gain": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "auto-increment"
+        },
+        "idAccount": {
+          "type": "string"
+        },
+        "idTicket": {
+          "type": "string"
+        },
+        "emailAccount": {
+          "type": "string"
+        },
+        "numTicket": {
+          "type": "integer"
+        },
+        "libelleGain": {
+          "type": "string"
+        },
+        "dateGain": {
+          "type": "string",
+          "format": "date-time",
+          "description": "default value dateNow"
+        },
+        "isTakedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "default value null"
+        },
+        "isTaked": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "_id",
+        "idAccount",
+        "idTicket"
+      ],
+      "xml": {
+        "name": "Gain"
+      }
+    },
+    "Ticket": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "auto-increment"
+        },
+        "numTicket": {
+          "type": "integer",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "libelleGain": {
+          "type": "string"
+        },
+        "dateTicket": {
+          "type": "string",
+          "format": "date-time",
+          "description": "default value dateNow"
+        },
+        "deleted": {
+          "type": "boolean",
+          "default": false
+        },
+        "used": {
+          "type": "boolean",
+          "default": false
+        },
+        "usedby": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "required": [
+        "_id",
+        "numTicket",
+        "libelleGain"
+      ],
+      "xml": {
+        "name": "Gain"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
