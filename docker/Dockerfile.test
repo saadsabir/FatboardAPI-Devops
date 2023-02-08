@@ -1,0 +1,14 @@
+FROM fatboar-api
+
+COPY . .
+
+# Environment variables
+ENV NODE_ENV production
+
+RUN yarn install && yarn global add mocha 
+
+
+
+CMD ["yarn", "testjunit"]
+
+RUN export JUNIT_REPORT_PATH=./report.xml

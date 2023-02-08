@@ -1,0 +1,13 @@
+FROM node:alpine3.10
+
+RUN mkdir -p /api
+WORKDIR /api
+
+COPY . .
+
+RUN apk add --virtual builds-deps build-base python
+
+RUN yarn install
+
+EXPOSE 3001
+CMD ["yarn", "dev"]
