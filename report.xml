@@ -1,0 +1,112 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="Account create an admin account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.127">
+    <testcase classname="Account create an admin account" name="Should exist" time="0.002">
+    </testcase>
+    <testcase classname="Account create an admin account" name="Should create a new admin account" time="0.118">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account create an user account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.039">
+    <testcase classname="Account create an user account" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Account create an user account" name="Should create a new user account" time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account Get all accounts" tests="4" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.074">
+    <testcase classname="Account Get all accounts" name="Should exist" time="0.001">
+    </testcase>
+    <testcase classname="Account Get all accounts" name="Should get list of accounts" time="0.054">
+    </testcase>
+    <testcase classname="Account Get all accounts" name="Should return token permissions error" time="0.009">
+    </testcase>
+    <testcase classname="Account Get all accounts" name="Should return JsonWebTokenError" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account Get an account" tests="3" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.015">
+    <testcase classname="Account Get an account" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Account Get an account" name="Should get an account by token" time="0.006">
+    </testcase>
+    <testcase classname="Account Get an account" name="Should return JsonWebTokenError" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account create a test account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.179">
+    <testcase classname="Account create a test account" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Account create a test account" name="Should create a new account" time="0.176">
+    </testcase>
+  </testsuite>
+  <testsuite name="Account update an account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:24" time="0.188">
+    <testcase classname="Account update an account" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Account update an account" name="Should update an account" time="0.185">
+    </testcase>
+  </testsuite>
+  <testsuite name="Connection Classic Connection" tests="3" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.268">
+    <testcase classname="Connection Classic Connection" name="Should exist" time="0.001">
+    </testcase>
+    <testcase classname="Connection Classic Connection" name="Should do a classic connection" time="0.129">
+    </testcase>
+    <testcase classname="Connection Classic Connection" name="Should return a connection error" time="0.137">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tickets add a test ticket" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.014">
+    <testcase classname="Tickets add a test ticket" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Tickets add a test ticket" name="Should add a test ticket" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tickets add a test ticket get all tickets" tests="4" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.051">
+    <testcase classname="Tickets add a test ticket get all tickets" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Tickets add a test ticket get all tickets" name="Should get list of tickets" time="0.02">
+    </testcase>
+    <testcase classname="Tickets add a test ticket get all tickets" name="Should return token permissions error" time="0.02">
+    </testcase>
+    <testcase classname="Tickets add a test ticket get all tickets" name="Should return JsonWebTokenError" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tickets validate a ticket" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.047">
+    <testcase classname="Tickets validate a ticket" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Tickets validate a ticket" name="Should validate a ticket" time="0.044">
+    </testcase>
+  </testsuite>
+  <testsuite name="Gain get my list of gain" tests="3" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.019">
+    <testcase classname="Gain get my list of gain" name="Should exist" time="0.001">
+    </testcase>
+    <testcase classname="Gain get my list of gain" name="Should get my list of gain" time="0.014">
+    </testcase>
+    <testcase classname="Gain get my list of gain" name="Should get JsonWebTokenError" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Delete gain" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.021">
+    <testcase classname="Delete gain" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Delete gain" name="Should delete test gain" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="UPDATE ticket" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.009">
+    <testcase classname="UPDATE ticket" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="UPDATE ticket" name="Should reset test ticket" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Delete account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.013">
+    <testcase classname="Delete account" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="Delete account" name="Should delete test account" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="Delete admin and user test account" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.01">
+    <testcase classname="Delete admin and user test account" name="Should exist" time="0.001">
+    </testcase>
+    <testcase classname="Delete admin and user test account" name="Should delete test admin and user accounts" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="delete test ticket" tests="2" errors="0" failures="0" skipped="0" timestamp="2020-04-09T19:52:25" time="0.012">
+    <testcase classname="delete test ticket" name="Should exist" time="0">
+    </testcase>
+    <testcase classname="delete test ticket" name="Should delete test ticket" time="0.006">
+    </testcase>
+  </testsuite>
+</testsuites>

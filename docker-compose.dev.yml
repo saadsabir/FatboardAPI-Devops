@@ -1,0 +1,53 @@
+version: "3.3"
+
+networks:
+  api-network:
+    driver: bridge
+  web:
+    external: true  
+
+volumes:
+  dbdata:
+  node_modules: 
+
+services:
+  api:
+    container_name: fatboar_api_dev
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    image: fatboar-api:latest
+    env_file: .env
+    environment:
+      - MONGO_USERNAME=$MONGO_USERNAME
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=db
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
+    volumes:
+      - node_modules:/api  
+    networks: 
+      - api-network
+      - web
+    depends_on:
+      - db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=3001"
+      - "traefik.frontend.rule=Host:api.dev.fatboarrestaurant.com"
+      - "traefik.docker.network=web" 
+  
+  db:
+    container_name: fatboar_db_dev
+    image: mongo:4.0.13
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD  
+    volumes:
+      - dbdata:/data/db
+      - ./docker/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - api-network     

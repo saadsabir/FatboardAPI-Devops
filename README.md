@@ -1,2 +1,12 @@
-# Fatboard-API
-Projet Fatboard 2019 (projet fin d'étude)
+## API Fatboar
+API for the restaurant Fatboar
+
+
+
+### Run
+
+Install dependencies
+<p>
+<code>$ yarn</code><br>
+<code>$ yarn prod</code>
+</p>
